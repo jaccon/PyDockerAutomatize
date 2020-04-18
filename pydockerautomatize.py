@@ -68,7 +68,7 @@ with open(configurationFile) as json_file:
 
         #4) Build a Docker-Compose File
         print('** 4 ** Build a Docker Compose File ...')
-        copyConfigFiles('docker-compose.template','docker-compose.yml')
+        copyConfigFiles('./templates/docker-compose.template','./docker-compose.yml')
         replaceStrings('docker-compose.yml', '[[appName]]', str(p['appName']))
         replaceStrings('docker-compose.yml', '[[appPortWP]]', str(p['appPortWP']))
         replaceStrings('docker-compose.yml', '[[appPortDb]]', str(p['appPortDb']))
@@ -90,9 +90,9 @@ with open(configurationFile) as json_file:
 
         #5) Build Container Start and Stop scripts
         print('** 5 ** Build a Start and Stop script')
-        copyConfigFiles('start.template','start.sh')
+        copyConfigFiles('./templates/start.template','./start.sh')
         replaceStrings('start.sh', '[[projectName]]', str(p['projectName']))
-        copyConfigFiles('stop.template','stop.sh')
+        copyConfigFiles('./templates/stop.template','./stop.sh')
         replaceStrings('stop.sh', '[[projectName]]', str(p['projectName']))
         print('')
 
@@ -117,7 +117,7 @@ with open(configurationFile) as json_file:
 
         if str(p['autoStart'] == "yes"):
           os.system('../start.sh')
-          os.system('docker-compose ps')
+          os.system('docker container ps')
         
 
 

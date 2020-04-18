@@ -7,17 +7,19 @@ and running a script. The robot build everything to you.
 
 Follow the commands to use
 
-'''
+```
 mkdir your-project
 cd your-project
 git clone https://github.com/jaccon/PyDockerAutomatize
 cd PyDockerAutomatize
-'''
+```
 
 Add your configurations in config.json file and to finish run
 
-'''
+```
 python config.py
-'''
+```
+
+Just waiting
 
 

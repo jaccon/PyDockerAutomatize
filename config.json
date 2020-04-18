@@ -2,8 +2,8 @@
   "containerConfiguration": [
       {
         "autoStart" : "yes",
-        "appName" : "mywordpress",
-        "projectName" : "mywordpress",
+        "appName" : "myapp",
+        "projectName" : "myapp",
         "appPortWP" : "8406",
         "appPortDb" : "8407",
         "appPortPhpMyAdmin" : "8408",
