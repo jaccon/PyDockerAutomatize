@@ -1,0 +1,56 @@
+version: '2'
+
+services:
+  [[appName]]_db:
+    image: [[dbAppImage]]
+    container_name: [[appName]]_db
+    networks:
+      - "[[network]]"
+    ports:
+      - "[[appPortDb]]:3306"
+    volumes:
+      - ./[[dbVolume]]/data:/var/lib/mysql
+      - ./[[dbVolume]]/initdb.d:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: [[dbRootPassword]]
+      MYSQL_DATABASE: [[dbName]]
+      MYSQL_USER: [[dbUser]]
+      MYSQL_PASSWORD: [[dbPassword]]
+
+  wp:
+    depends_on:
+      - [[appName]]_db
+    image: [[phpAppImage]]
+    container_name: [[appName]]_wp
+    networks:
+      - "[[network]]"
+    ports:
+      - "[[appPortWP]]:80"
+    restart: always
+    links:
+      - [[appName]]_db:mysql
+    volumes:
+      - ./[[appVolume]]:/var/www/html
+      - ./[[appPhpIniVolume]]/php/php.ini:/usr/local/etc/php/php.ini
+
+  phpmyadmin:
+    image: [[phpMyAdminImage]]
+    container_name: [[appName]]_phpmyadmin
+    volumes:
+      - ./[[phpMyAdminVolume]]/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+    links:
+      - [[appName]]_db
+    networks:
+      - "[[network]]"
+    ports:
+      - "[[appPortPhpMyAdmin]]:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=[[appName]]_db
+
+networks:
+  [[network]]:
+    ipam:
+      config:
+      - subnet: [[appIp]]

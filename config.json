@@ -1,0 +1,25 @@
+{
+  "containerConfiguration": [
+      {
+        "autoStart" : "yes",
+        "appName" : "mywordpress",
+        "projectName" : "mywordpress",
+        "appPortWP" : "8406",
+        "appPortDb" : "8407",
+        "appPortPhpMyAdmin" : "8408",
+        "appIp" : "172.16.10.0/24",
+        "network" : "hosting",
+        "phpAppImage" : "wordpress:php7.1",
+        "dbAppImage" : "mysql:5.7",
+        "phpMyAdminImage" : "phpmyadmin/phpmyadmin:latest",
+        "dbRootPassword" : "mypassword",
+        "dbPassword" : "mypassword",
+        "dbName" : "app",
+        "dbUser" : "app",
+        "appVolume" : "src",
+        "appPhpIniVolume" : "etc",
+        "phpMyAdminVolume" : "phpmyadmin",
+        "dbVolume" : "database"
+      }
+  ]
+}
