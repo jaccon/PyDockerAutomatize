@@ -1,4 +1,5 @@
 # PyDockerAutomatize
+### developed by André Jaccon @jaccon
 
 This is a simple script to automate a build docker-compose.yml file. Can you put your configurations in config.json file
 and running a script. The robot build everything to you.
@@ -21,5 +22,6 @@ python config.py
 ```
 
 Just waiting
+
 
 
